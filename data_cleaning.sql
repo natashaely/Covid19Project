@@ -64,7 +64,7 @@ ORDER BY
 CaseLoadRate DESC
   
   
---- Checking for duplicates and confirming the number of countries as well as the total count of daily report entries per country. 
+-- Checking for duplicates and confirming the number of countries as well as the total count of daily report entries per country. 
  
 SELECT location, COUNT(*) AS TotalEntries
 FROM PortfolioProject..CovidDeaths
@@ -74,7 +74,7 @@ GROUP BY location
 HAVING COUNT(*) > 1;
 
 
---- Filtering out countries with NULL values in the Total Cases column. These are countries which have not reported their Covid-19 data to the World Health Organisation.
+-- Filtering out countries with NULL values in the Total Cases column. These are countries which have not reported their Covid-19 data to the World Health Organisation.
 
 SELECT
 location,
@@ -85,6 +85,24 @@ FROM
 PortfolioProject..CovidDeaths
 WHERE 
 total_cases IS NOT NULL AND continent is NOT NULL OR location != 'World' AND location != 'International' AND location != 'European Union' AND location != 'High Income' AND location != 'Lower middle income' AND location != 'Low income' AND location != 'Upper middle income' AND location != 'Africa' AND location != 'Oceana' AND location != 'Europe' AND location != 'North America' AND location != 'South America' AND location != 'Asia'    
+GROUP BY
+location,
+population
+ORDER BY
+CaseLoadRate DESC
+
+
+-- Filtering out locations which form part of the United Kingdom.
+
+SELECT
+location,
+population,
+MAX(total_cases) AS HighestCaseLoad,
+MAX((total_cases/population))*100 AS CaseLoadRate
+FROM 
+PortfolioProject..CovidDeaths
+WHERE 
+total_cases IS NOT NULL AND continent is NOT NULL OR location != 'World' AND location != 'International' AND location != 'European Union' AND location != 'High Income' AND location != 'Lower middle income' AND location != 'Low income' AND location != 'Upper middle income' AND location != 'Africa' AND location != 'Oceana' AND location != 'Europe' AND location != 'North America' AND location != 'South America' AND location != 'Asia' AND location != 'England' AND location != 'Northern Ireland' AND location != 'Wales' AND location != 'Scotland'    
 GROUP BY
 location,
 population
@@ -103,7 +121,7 @@ MAX((total_cases/population))*100 AS CaseLoadRate
 FROM 
 PortfolioProject..CovidDeaths
 WHERE 
-total_cases IS NOT NULL OR location != 'World' AND location != 'International' AND location != 'European Union' AND location != 'High Income' AND location != 'Lower middle income' AND location != 'Low income' AND location != 'Upper middle income' AND location != 'Africa' AND location != 'Oceana' AND location != 'Europe' AND location != 'North America' AND location != 'South America' AND location != 'Asia'    
+total_cases IS NOT NULL AND continent is NOT NULL OR location != 'World' AND location != 'International' AND location != 'European Union' AND location != 'High Income' AND location != 'Lower middle income' AND location != 'Low income' AND location != 'Upper middle income' AND location != 'Africa' AND location != 'Oceana' AND location != 'Europe' AND location != 'North America' AND location != 'South America' AND location != 'Asia' AND location != 'England' AND location != 'Northern Ireland' AND location != 'Wales' AND location != 'Scotland'
 GROUP BY
 location,
 population,
@@ -122,7 +140,7 @@ MAX((total_cases/population))*100 AS CaseLoadRate
 FROM 
 PortfolioProject..CovidDeaths
 WHERE 
-total_cases IS NOT NULL OR location != 'World' AND location != 'International' AND location != 'European Union' AND location != 'High Income' AND location != 'Lower middle income' AND location != 'Low income' AND location != 'Upper middle income' AND location != 'Africa' AND location != 'Oceana' AND location != 'Europe' AND location != 'North America' AND location != 'South America' AND location != 'Asia'    
+total_cases IS NOT NULL AND continent is NOT NULL OR location != 'World' AND location != 'International' AND location != 'European Union' AND location != 'High Income' AND location != 'Lower middle income' AND location != 'Low income' AND location != 'Upper middle income' AND location != 'Africa' AND location != 'Oceana' AND location != 'Europe' AND location != 'North America' AND location != 'South America' AND location != 'Asia' AND location != 'England' AND location != 'Northern Ireland' AND location != 'Wales' AND location != 'Scotland'
 GROUP BY
 location,
 population,
