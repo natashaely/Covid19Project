@@ -56,7 +56,7 @@ MAX((total_cases/population))*100 AS CaseLoadRate
 FROM 
 PortfolioProject..CovidDeaths
 WHERE 
-continent is NULL AND location != 'World' AND location != 'International' AND location != 'European Union' AND location != 'High Income' AND location != 'Lower middle income' AND location != 'Low income' AND location != 'Upper middle income'   
+location != 'World' AND location != 'International' AND location != 'European Union' AND location != 'High Income' AND location != 'Lower middle income' AND location != 'Low income' AND location != 'Upper middle income'   
 GROUP BY
 location,
 population
@@ -103,7 +103,7 @@ MAX((total_cases/population))*100 AS CaseLoadRate
 FROM 
 PortfolioProject..CovidDeaths
 WHERE 
-total_cases IS NOT NULL AND continent is NOT NULL OR location != 'World' AND location != 'International' AND location != 'European Union' AND location != 'High Income' AND location != 'Lower middle income' AND location != 'Low income' AND location != 'Upper middle income' AND location != 'Africa' AND location != 'Oceana' AND location != 'Europe' AND location != 'North America' AND location != 'South America' AND location != 'Asia'    
+total_cases IS NOT NULL OR location != 'World' AND location != 'International' AND location != 'European Union' AND location != 'High Income' AND location != 'Lower middle income' AND location != 'Low income' AND location != 'Upper middle income' AND location != 'Africa' AND location != 'Oceana' AND location != 'Europe' AND location != 'North America' AND location != 'South America' AND location != 'Asia'    
 GROUP BY
 location,
 population,
@@ -122,7 +122,7 @@ MAX((total_cases/population))*100 AS CaseLoadRate
 FROM 
 PortfolioProject..CovidDeaths
 WHERE 
-total_cases IS NOT NULL AND continent is NOT NULL OR location != 'World' AND location != 'International' AND location != 'European Union' AND location != 'High Income' AND location != 'Lower middle income' AND location != 'Low income' AND location != 'Upper middle income' AND location != 'Africa' AND location != 'Oceana' AND location != 'Europe' AND location != 'North America' AND location != 'South America' AND location != 'Asia'    
+total_cases IS NOT NULL OR location != 'World' AND location != 'International' AND location != 'European Union' AND location != 'High Income' AND location != 'Lower middle income' AND location != 'Low income' AND location != 'Upper middle income' AND location != 'Africa' AND location != 'Oceana' AND location != 'Europe' AND location != 'North America' AND location != 'South America' AND location != 'Asia'    
 GROUP BY
 location,
 population,
