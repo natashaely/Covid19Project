@@ -1,4 +1,4 @@
--- Filtering out the aggregated continent data and calculating the totals for the Focus metrics counter at the top of the dashboard. 
+-- Filtering out the aggregated continent data and calculating the total cases and total mortalities. 
 
 SELECT 
 SUM(new_cases) as total_cases, 
